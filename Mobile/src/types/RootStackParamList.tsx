@@ -7,5 +7,16 @@ export type RootStackParamList = {
   Success: undefined;
   Home: undefined;
   Messages: undefined;
-  ChatScreen: { id: string };  // Make sure this is correct
-};
+  ChatScreen: { id: string }; 
+  ProfileScreen: undefined;
+  PreferencesScreen: undefined;
+  ProfileSetupScreen: undefined;
+  AccountScreen: undefined;
+  PrivacyScreen: undefined;
+  NotificationsScreen: undefined;
+  SupportScreen: undefined;
+  FilterInternships: undefined;
+  InternshipDetails: { internshipId: string };
+  ViewInternships: undefined;
+  ApplyForInternship: {id:string, visible: boolean; onClose: () => void; onSubmit: () => void };};
+

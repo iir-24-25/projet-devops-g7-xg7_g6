@@ -1,7 +1,13 @@
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native';
 // import { Search, MapPin, Clock, Bookmark } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import { RootStackParamList } from '../../types/RootStackParamList';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 interface JobPost {
   id: string;
@@ -19,6 +25,7 @@ interface JobPost {
   duration: string;
   isRemote: boolean;
 }
+type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 const JOBS: JobPost[] = [
   {
@@ -61,6 +68,9 @@ const CATEGORIES = ['All', 'Tech', 'Design', 'Business', 'Engineering'];
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const [selectedCategory, setSelectedCategory] = React.useState(0);
+    const navigation = useNavigation<HomeScreenNavigationProp>();
+  
 
   return (
     <ScrollView style={[styles.container, { paddingTop: insets.top }]}>
@@ -85,13 +95,15 @@ export default function HomeScreen() {
             placeholder="Search internships..."
             placeholderTextColor="#71717a"
           />
+          <Ionicons onPress={()=>navigation.navigate("FilterInternships")} name='options-outline' size={24} color="#71717a" />
+
         </View>
       </View>
 
       <View style={styles.categoriesContainer}>
         <Text style={styles.sectionTitle}>Featured Internships</Text>
-        <TouchableOpacity>
-          <Text style={styles.viewAll}>View all</Text>
+        <TouchableOpacity  onPress={()=>{navigation.navigate('ViewInternships')}}>
+          <Text style={styles.viewAll} >View all</Text>
         </TouchableOpacity>
       </View>
 
@@ -103,14 +115,15 @@ export default function HomeScreen() {
         {CATEGORIES.map((category, index) => (
           <TouchableOpacity
             key={category}
+            onPress={() => setSelectedCategory(index)}
             style={[
               styles.categoryButton,
-              index === 0 && styles.activeCategoryButton,
+              selectedCategory === index && styles.activeCategoryButton,
             ]}>
             <Text
               style={[
                 styles.categoryText,
-                index === 0 && styles.activeCategoryText,
+                selectedCategory === index && styles.activeCategoryText,
               ]}>
               {category}
             </Text>
@@ -131,15 +144,14 @@ export default function HomeScreen() {
                 <EvilIcons name='heart' size={23} color="#71717a" />
               </TouchableOpacity>
             </View>
-
-            <View style={styles.jobDetails}>
+            <TouchableOpacity onPress={()=>navigation.navigate("InternshipDetails",{internshipId:job.id})} style={styles.jobDetails}>
               <View style={styles.locationContainer}>
                 <EvilIcons name='location' size={16} color="#71717a" />
                 <Text style={styles.locationText}>{job.location} {job.isRemote && '• Remote'}</Text>
               </View>
-              
+
               <Text style={styles.description} numberOfLines={2}>{job.description}</Text>
-              
+
               <View style={styles.jobFooter}>
                 <View style={styles.experienceContainer}>
                   <Text style={styles.experienceText}>{job.experience}</Text>
@@ -152,8 +164,9 @@ export default function HomeScreen() {
                   <Text style={styles.postedTimeText}>{job.postedTime}</Text>
                 </View>
               </View>
+            </TouchableOpacity>
             </View>
-          </View>
+          
         ))}
       </View>
     </ScrollView>
@@ -255,6 +268,7 @@ const styles = StyleSheet.create({
   viewAll: {
     fontSize: 14,
     color: '#71717a',
+    cursor: 'pointer',
   },
   categoriesWrapper: {
     marginTop: 16,

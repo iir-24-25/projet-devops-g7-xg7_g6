@@ -1,15 +1,23 @@
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-// import { ChevronRight, User, Settings, Bell, Shield, CircleHelp as HelpCircle, Crown } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../types/RootStackParamList';
+import { useNavigation } from '@react-navigation/native';
+
+
+type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ProfileScreen'>;
 
 interface MenuItem {
   id: string;
   title: string;
   subtitle: string;
   icon: React.ReactNode;
+  link: string; 
 }
+
+
 
 const MENU_ITEMS: MenuItem[] = [
   {
@@ -17,41 +25,47 @@ const MENU_ITEMS: MenuItem[] = [
     title: 'Account',
     subtitle: 'Personal Info, Profile Picture',
     icon: <AntDesign name='user' size={20} color="#71717a" />,
+    link: 'AccountScreen', 
   },
   {
     id: 'profile-setup',
     title: 'Profile Setup',
     subtitle: 'Mention your job, experience, Project work and certification',
     icon: <AntDesign name="setting" size={20} color="#71717a" />,
+    link: 'ProfileSetupScreen',
   },
   {
     id: 'preferences',
     title: 'General Preference',
     subtitle: 'Language, Currency, Theme',
     icon: <AntDesign name="setting" size={20} color="#71717a" />,
+    link: 'PreferencesScreen',
   },
   {
     id: 'notifications',
     title: 'Notification Manage',
     subtitle: 'Notification Preference',
     icon: <AntDesign name='bells' size={20} color="#71717a" />,
+    link: 'NotificationsScreen',
   },
   {
     id: 'privacy',
     title: 'Data Privacy & Protection',
     subtitle: 'Enable / Disable data Privacy information to be displayed',
     icon: <AntDesign name='lock1' size={20} color="#71717a" />,
-  },
+    link: 'PrivacyScreen'},
   {
     id: 'support',
     title: 'Help & Support',
     subtitle: 'Customer Support - 24/7, Chat support, Customer call representative',
     icon: <MaterialIcons name='help-outline' size={20} color="#71717a" />,
+    link: 'SupportScreen',
   },
 ];
 
-export default function Profile() {
+const  Profile:React.FC=()=> {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<ProfileScreenNavigationProp>(); // Initialize navigation with type
 
   return (
     <ScrollView 
@@ -80,13 +94,14 @@ export default function Profile() {
       </View>
 
       <View style={styles.menuContainer}>
-        {MENU_ITEMS.map((item, index) => (
+        {MENU_ITEMS.map((item , index) => (
           <TouchableOpacity 
             key={item.id}
             style={[
               styles.menuItem,
               index === MENU_ITEMS.length - 1 && styles.lastMenuItem,
             ]}
+            onPress={() => navigation.navigate(item.link as any)} // Navigate to the link
           >
             <View style={styles.menuItemContent}>
               <View style={styles.menuItemIcon}>
@@ -100,12 +115,11 @@ export default function Profile() {
             </View>
           </TouchableOpacity>
         ))}
-
-        
       </View>
     </ScrollView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -212,3 +226,6 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
 });
+
+
+export default Profile;

@@ -8,25 +8,32 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Dashboard from '../screens/user/Dashboard';
 import Network from '../screens/user/Network';
 import Post from '../screens/user/Post';
-import Profile from '../screens/user/Profile';
 import MessageStack from './MessageStack';
+import ProfileStack from './ProfileStack';
+import HomeDashbordStack from './HomeDashbordStack';
 
 const Tab = createBottomTabNavigator();
 
 const HomeTab = ({ route }: any) => {
   // Get the current route inside MessageStack
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Messages';
+  const hiddenTabRoutes = ['ChatScreen', 'AccountScreen', 'ProfileSetupScreen', 'GeneralPreferenceScreen', 'NotificationManageScreen', 'DataPrivacyScreen',"ViewInternships","InternshipDetails","FilterInternships","ViewInternshipDetails"];
 
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+    screenOptions={({ route }) => {
+      const routeName = getFocusedRouteNameFromRoute(route) ?? '';
+      const isTabHidden = hiddenTabRoutes.includes(routeName);
+  
+      return {
+        tabBarStyle: isTabHidden ? { display: 'none' } : undefined,
         headerShown: false,
-        tabBarStyle: getFocusedRouteNameFromRoute(route) === 'ChatScreen' ? { display: 'none' } : {},
-      })}
+
+      };
+    }}
     >
       <Tab.Screen
         name="Dashboard"
-        component={Dashboard}
+        component={HomeDashbordStack}
         options={{
           tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} />,
         }}
@@ -58,9 +65,11 @@ const HomeTab = ({ route }: any) => {
 
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileStack}
         options={{
           tabBarIcon: ({ color, size }) => <Icon name="account-circle" size={size} color={color} />,
+      
+
         }}
       />
     </Tab.Navigator>
