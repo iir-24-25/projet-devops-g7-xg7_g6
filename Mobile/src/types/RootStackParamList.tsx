@@ -18,5 +18,11 @@ export type RootStackParamList = {
   FilterInternships: undefined;
   InternshipDetails: { internshipId: string };
   ViewInternships: undefined;
-  ApplyForInternship: {id:string, visible: boolean; onClose: () => void; onSubmit: () => void };};
+  ApplyForInternship: {id:string, visible: boolean; onClose: () => void; onSubmit: () => void };
+
+  SetupProfile: undefined;
+  SelectCountry   : undefined;
+  PersonalInfo: undefined;
+  Education: undefined;
+};
 

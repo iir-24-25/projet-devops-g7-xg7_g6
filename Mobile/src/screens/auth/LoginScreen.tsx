@@ -56,7 +56,7 @@ export default function LoginScreen() {
           <Text style={styles.rememberText}>Remember Me</Text>
         </View>
 
-        <TouchableOpacity onPress={()=>navigation.navigate("Home")} style={styles.signupButton}>
+        <TouchableOpacity onPress={()=>navigation.navigate("SetupProfile")} style={styles.signupButton}>
           <Text style={styles.signupButtonText}>Sign in</Text>
         </TouchableOpacity>
 

@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import DocumentPicker from 'react-native-document-picker';
+// import DocumentPicker from 'react-native-document-picker';
 
 interface ApplyFormProps {
   visible: boolean;
@@ -26,19 +26,19 @@ const ApplyForInternship: React.FC<ApplyFormProps> = ({ visible, onClose, onSubm
   const [cv, setCv] = useState<any>(null);
 
 const handlePickDocument = async () => {
-    try {
-        const result = await DocumentPicker.pick({
-            type: [DocumentPicker.types.pdf],
-        });
-        setCv(result[0]);
-    } catch (err) {
-        if (DocumentPicker.isCancel(err)) {
-            onClose();
-            // User cancelled the picker
-        } else {
-            console.error(err);
-        }
-    }
+    // try {
+    //     const result = await DocumentPicker.pick({
+    //         type: [DocumentPicker.types.pdf],
+    //     });
+    //     setCv(result[0]);
+    // } catch (err) {
+    //     if (DocumentPicker.isCancel(err)) {
+    //         onClose();
+    //         // User cancelled the picker
+    //     } else {
+    //         console.error(err);
+    //     }
+    // }
   };
 
   const handleSubmit = () => {
