@@ -24,5 +24,16 @@ export type RootStackParamList = {
   SelectCountry   : undefined;
   PersonalInfo: undefined;
   Education: undefined;
+  ExperienceType: undefined;
+  InternshipExperience: undefined;
+  WorkingExperience: undefined;
+
+  Internship_Experience_Details: undefined;
+  IndustrySelection: undefined;
+  InternshipType: undefined;
+  ProjectAcademic: undefined;
+  AreasOfInterest: undefined;
+  ProfilePhoto: undefined;
+  Certification: undefined;
 };
 

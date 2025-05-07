@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#007AFF',
   },
   footer: {
-    padding: 16,
+    margin: 30,
   },
   continueButton: {
     backgroundColor: '#007AFF',

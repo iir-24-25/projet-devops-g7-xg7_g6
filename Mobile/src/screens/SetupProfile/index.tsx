@@ -9,9 +9,12 @@ import {
   Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types/RootStackParamList';
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'SetupProfile'>;
 
 const SetupProfileScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,7 +38,7 @@ const SetupProfileScreen = () => {
       <View style={styles.footer}>
         <TouchableOpacity 
           style={styles.continueButton}
-          onPress={() => navigation.navigate('SelectCountry' as never)}
+          onPress={() => navigation.navigate('SelectCountry')}
         >
           <Text style={styles.continueButtonText}>Continue</Text>
         </TouchableOpacity>
