@@ -4,6 +4,9 @@ import { useNavigation } from "@react-navigation/native"
 import { useState } from "react"
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, StatusBar } from "react-native"
 import Ionicons from "react-native-vector-icons/Ionicons"
+import { RootStackParamList } from "../../types/RootStackParamList"
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+type EducationScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Education'>;
 
 export default function EducationScreen() {
   const [activeTab, setActiveTab] = useState("graduation")
@@ -25,7 +28,7 @@ export default function EducationScreen() {
     },
   ])
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<EducationScreenNavigationProp>()
   const handleSchoolChange = (field: string, value: string) => {
     setSchoolData({ ...schoolData, [field]: value })
   }
@@ -56,7 +59,8 @@ export default function EducationScreen() {
 
   const handleContinue = () => {
     // Navigate to next screen or submit data
-    console.log("Education data saved")
+
+    navigation.navigate("Certification")
   }
 
   return (
@@ -70,7 +74,6 @@ export default function EducationScreen() {
       </View>
 
       <ScrollView style={styles.formContainer}>
-        <Text style={styles.sectionTitle}>Education</Text>
         <View style={styles.divider} />
 
         <View style={styles.tabContainer}>
