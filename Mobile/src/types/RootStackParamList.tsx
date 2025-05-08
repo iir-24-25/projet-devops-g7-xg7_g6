@@ -38,7 +38,8 @@ export type RootStackParamList = {
   Post:undefined;
   // <Stack.Screen name="PostDetails" component={} options={{ title: 'Post Details' }} />
   PostDetails: { post: any }; 
-  NewPost:undefined
+  NewPost:undefined;
+  Notification: undefined;
 
 };
 

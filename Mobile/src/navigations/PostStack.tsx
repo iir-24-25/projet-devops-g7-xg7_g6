@@ -11,7 +11,9 @@ const Stack = createStackNavigator<RootStackParamList>();
 const PostStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Post" component={Post} options={{ title: 'Posts' }} />
+            <Stack.Screen name="Post" component={Post} options={
+                { headerShown: false } // Hide the header for the Post screen
+            } />
             <Stack.Screen name="PostDetails" component={PostDetails} options={{ title: 'Post Details' }} />
             <Stack.Screen name="NewPost" component={CreateNewPost} options={{ title: 'New Post' }} />
         </Stack.Navigator>

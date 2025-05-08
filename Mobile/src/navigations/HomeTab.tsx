@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const HomeTab = ({ route }: any) => {
   // Get the current route inside MessageStack
-  const hiddenTabRoutes = ['ChatScreen', 'AccountScreen', 'ProfileSetupScreen', 'GeneralPreferenceScreen', 'NotificationManageScreen', 'DataPrivacyScreen',"ViewInternships","InternshipDetails","FilterInternships","ViewInternshipDetails","NewPost","PostDetails","ApplyForInternship"];
+  const hiddenTabRoutes = ['ChatScreen', 'AccountScreen', 'ProfileSetupScreen', 'GeneralPreferenceScreen', 'NotificationManageScreen', 'DataPrivacyScreen',"ViewInternships","InternshipDetails","FilterInternships","ViewInternshipDetails","NewPost","PostDetails","ApplyForInternship" ,"Notification"];
 
   return (
     <Tab.Navigator

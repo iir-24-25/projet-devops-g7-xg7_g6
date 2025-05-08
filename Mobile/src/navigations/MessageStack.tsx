@@ -22,6 +22,7 @@ const MessageStack: React.FC = () => {
       }}
       component={ChatScreen}
       />
+    
     </Stack.Navigator>
   );
 };

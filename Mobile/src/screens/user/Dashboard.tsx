@@ -79,7 +79,7 @@ export default function HomeScreen() {
           <Text style={styles.greeting}>Welcome to</Text>
           <Text style={styles.name}>Internship Dream</Text>
         </View>
-        <TouchableOpacity style={styles.notificationButton}>
+        <TouchableOpacity style={styles.notificationButton} onPress={()=>navigation.navigate("Notification")}>
           <EvilIcons name="bell" size={28} color="#18181b" />
           <View style={styles.notificationBadge}>
             <Text style={styles.notificationBadgeText}>3</Text>

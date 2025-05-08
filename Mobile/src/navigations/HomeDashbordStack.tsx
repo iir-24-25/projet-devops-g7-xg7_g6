@@ -6,6 +6,7 @@ import InternshipDetails from '../screens/Internship/InternshipDetails';
 import FilterInternships from '../screens/Internship/FilterInternships';
 import Dashboard from '../screens/user/Dashboard';
 import ApplyForInternship from '../screens/Internship/ApplyForInternship';
+import NotificationScreen from '../screens/user/Notification';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -27,6 +28,8 @@ const HomeDashbordStack: React.FC = () => {
     <Stack.Screen name="InternshipDetails" component={InternshipDetails} />
     <Stack.Screen name="FilterInternships" component={FilterInternships} />
     <Stack.Screen name="ApplyForInternship" component={ApplyForInternship as any} />
+    <Stack.Screen name="Notification" component={NotificationScreen} />
+
 
     </Stack.Navigator>
   );
