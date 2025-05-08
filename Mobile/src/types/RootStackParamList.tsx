@@ -35,5 +35,10 @@ export type RootStackParamList = {
   AreasOfInterest: undefined;
   ProfilePhoto: undefined;
   Certification: undefined;
+  Post:undefined;
+  // <Stack.Screen name="PostDetails" component={} options={{ title: 'Post Details' }} />
+  PostDetails: { post: any }; 
+  NewPost:undefined
+
 };
 
