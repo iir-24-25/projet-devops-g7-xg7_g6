@@ -2,7 +2,7 @@ import {  useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { RootStackParamList } from '../../types/RootStackParamList';
-     type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Sucssess'>;
+     type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Success'>;
 
 export default function SuccessScreen() {
     const navigation = useNavigation<NavigationProp>();

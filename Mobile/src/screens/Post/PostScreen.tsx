@@ -2,6 +2,9 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'rea
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../types/RootStackParamList';
 
 interface Post {
   id: string;
@@ -44,15 +47,18 @@ const POSTS: Post[] = [
     time: '5h ago'
   }
 ];
+type ScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Post'>;
 
 export default function Post() {
   const insets = useSafeAreaInsets();
+
+  const navigate = useNavigation<ScreenNavigationProp>();
 
   return (
     <ScrollView style={[styles.container, { paddingTop: insets.top }]}>
       <View style={styles.header}>
         <Text style={styles.title}>Community Posts</Text>
-        <TouchableOpacity style={styles.createButton}>
+        <TouchableOpacity style={styles.createButton} onPress={() => navigate.navigate('NewPost')}>
           <AntDesign name="plus" size={24} color="#0066ff" />
         </TouchableOpacity>
       </View>
@@ -68,12 +74,20 @@ export default function Post() {
             <Text style={styles.postTime}>{post.time}</Text>
           </View>
 
-          <Text style={styles.postContent}>{post.content}</Text>
+
+<TouchableOpacity
+onPress={() => navigate.navigate('PostDetails', { post })}
+>
+<Text style={styles.postContent}>{post.content}</Text>
           
           {post.image && (
             <Image source={{ uri: post.image }} style={styles.postImage} />
           )}
 
+
+
+</TouchableOpacity>
+         
           <View style={styles.postFooter}>
             <TouchableOpacity style={styles.actionButton}>
               <AntDesign name="hearto" size={20} color="#71717a" />
@@ -88,10 +102,6 @@ export default function Post() {
             </TouchableOpacity>
           </View>
 
-          {/* New Design Elements */}
-          {/* <View style={styles.commentPreview}>
-            <Text style={styles.commentPreviewText}>View all {post.comments} comments</Text>
-          </View> */}
         </View>
       ))}
     </ScrollView>

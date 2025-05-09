@@ -143,7 +143,7 @@ const InternshipDetails = () => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.applyButton} onPress={() => {navigation.navigate('ApplyForInternship', { id: 1,visible:true })}}>
+          <TouchableOpacity style={styles.applyButton} onPress={() => {navigation.navigate('ApplyForInternship', { id: '1', visible: true, onClose: () => {}, onSubmit: () => {} })}}>
             <Text style={styles.applyButtonText}>Apply For Internship</Text>
           </TouchableOpacity>
         </View>

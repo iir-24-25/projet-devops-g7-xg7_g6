@@ -18,5 +18,27 @@ export type RootStackParamList = {
   FilterInternships: undefined;
   InternshipDetails: { internshipId: string };
   ViewInternships: undefined;
-  ApplyForInternship: {id:string, visible: boolean; onClose: () => void; onSubmit: () => void };};
+  ApplyForInternship: {id:string, visible: boolean; onClose: () => void; onSubmit: () => void };
+
+  SetupProfile: undefined;
+  SelectCountry   : undefined;
+  PersonalInfo: undefined;
+  Education: undefined;
+  ExperienceType: undefined;
+  InternshipExperience: undefined;
+  WorkingExperience: undefined;
+
+  Internship_Experience_Details: undefined;
+  IndustrySelection: undefined;
+  InternshipType: undefined;
+  ProjectAcademic: undefined;
+  AreasOfInterest: undefined;
+  ProfilePhoto: undefined;
+  Certification: undefined;
+  Post:undefined;
+  // <Stack.Screen name="PostDetails" component={} options={{ title: 'Post Details' }} />
+  PostDetails: { post: any }; 
+  NewPost:undefined
+
+};
 
